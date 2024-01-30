@@ -1,8 +1,12 @@
-import { unstable_noStore as noStore } from "next/cache";
-import Link from "next/link";
-
-import { api } from "@/trpc/server";
+import { UserButton } from "@clerk/nextjs";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default async function Home() {
-  return <div>Hellow</div>;
+  return (
+    <main>
+      <div>Discord AI</div>
+      <UserButton afterSignOutUrl="/" />
+      <ModeToggle />
+    </main>
+  );
 }
