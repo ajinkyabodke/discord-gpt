@@ -1,0 +1,1 @@
+ALTER TABLE "discord-gpt_messages" ALTER COLUMN "userId" DROP NOT NULL;

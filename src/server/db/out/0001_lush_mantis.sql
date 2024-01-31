@@ -1,0 +1,1 @@
+ALTER TABLE "discord-gpt_messages" ALTER COLUMN "userId" SET DATA TYPE varchar(191);

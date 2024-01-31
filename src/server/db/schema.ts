@@ -1,7 +1,7 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
+import { InferSelectModel, sql } from "drizzle-orm";
 import {
   index,
   integer,
@@ -24,9 +24,7 @@ export const messageRoleEnum = pgEnum("messageRoleEnum", ["assistant", "user"]);
 
 export const messages = createTable("messages", {
   id: serial("id").primaryKey(),
-  userId: integer("userId")
-    .references(() => users.userId)
-    .notNull(),
+  userId: varchar("userId", { length: 191 }),
   content: text("content").notNull(),
   role: messageRoleEnum("role").notNull(),
   createdAt: timestamp("createdAt", { withTimezone: true })
@@ -37,6 +35,8 @@ export const messages = createTable("messages", {
     .notNull(),
   deletedAt: timestamp("deletedAt", { withTimezone: true }),
 });
+
+export type MessagesSelectType = InferSelectModel<typeof messages>;
 
 export const users = createTable("users", {
   userId: varchar("userId", { length: 191 }).primaryKey().notNull(), // matches with Clerk

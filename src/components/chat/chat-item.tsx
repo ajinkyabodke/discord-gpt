@@ -5,22 +5,22 @@ import { cn } from "@/lib/utils";
 import { Edit, Trash } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 
-export const ChatItem = ({ id, content, imageUrl, member, timestamp }) => {
+export const ChatItem = ({ id, content, timestamp }) => {
   return (
     <div className="group relative flex w-full items-center p-4 transition hover:bg-black/5">
       <div className="group flex w-full items-start gap-x-2">
         <div className="cursor-pointer transition hover:drop-shadow-md">
-          <UserAvatar src={imageUrl}></UserAvatar>{" "}
+          {/* <UserAvatar src={imageUrl}></UserAvatar>{" "} */}
         </div>
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
               <p className="cursor-pointer text-sm font-semibold hover:underline">
-                {member}
+                {/* {member} */}
               </p>
             </div>
             <span className="text-xs text-zinc-500 dark:text-zinc-400">
-              {timestamp}
+              {/* {timestamp} */}
             </span>
           </div>
           <p className={cn("text-sm text-zinc-600 dark:text-zinc-300")}>

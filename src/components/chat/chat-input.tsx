@@ -16,6 +16,7 @@ import {
 import { Input } from "../ui/input";
 import { Plus } from "lucide-react";
 import { EmojiPicker } from "../emoji-picker";
+import { api } from "@/trpc/react";
 
 const formSchema = z.object({
   message: z.string().min(2, {
@@ -24,6 +25,7 @@ const formSchema = z.object({
 });
 
 export const ChatInput = () => {
+  const { mutate, isLoading } = api.post.sendMessage.useMutation();
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,6 +38,7 @@ export const ChatInput = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    mutate({ content: values.message });
     console.log(values);
     form.reset();
   }

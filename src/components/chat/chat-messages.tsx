@@ -4,38 +4,44 @@ import { Fragment, useRef, ElementRef } from "react";
 import { format } from "date-fns";
 
 import { Loader2, ServerCrash } from "lucide-react";
-import { messages } from "@/lib/constants";
+
 import { ChatWelcome } from "./chat-welcome";
 import { ChatItem } from "./chat-item";
 import { ScrollArea } from "../ui/scroll-area";
+import { MessagesSelectType } from "@/server/db/schema";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
-export const ChatMessages = () => {
-  const chatId = 1;
+export const ChatMessages = ({
+  messages,
+}: {
+  messages: MessagesSelectType;
+}) => {
+  // const chatId = 1;
 
-  if (status === "loading") {
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center">
-        <Loader2 className="my-4 h-7 w-7 animate-spin text-zinc-500" />
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Loading messages...
-        </p>
-      </div>
-    );
-  }
+  // if (status === "loading") {
+  //   return (
+  //     <div className="flex flex-1 flex-col items-center justify-center">
+  //       <Loader2 className="my-4 h-7 w-7 animate-spin text-zinc-500" />
+  //       <p className="text-xs text-zinc-500 dark:text-zinc-400">
+  //         Loading messages...
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
-  if (status === "error") {
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center">
-        <ServerCrash className="my-4 h-7 w-7 text-zinc-500" />
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Something went wrong!
-        </p>
-      </div>
-    );
-  }
+  // if (status === "error") {
+  //   return (
+  //     <div className="flex flex-1 flex-col items-center justify-center">
+  //       <ServerCrash className="my-4 h-7 w-7 text-zinc-500" />
+  //       <p className="text-xs text-zinc-500 dark:text-zinc-400">
+  //         Something went wrong!
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
+  
   return (
     <div className="flex flex-1 flex-col justify-end overflow-y-auto py-1">
       <ScrollArea>
@@ -60,8 +66,7 @@ export const ChatMessages = () => {
                 content={message.content}
                 id={message.id}
                 imageUrl={message.imageUrl}
-                member={message.member}
-                timestamp={message.timestamp}
+                timestamp={message.createdAt}
               ></ChatItem>
             ))}
           </Fragment>
