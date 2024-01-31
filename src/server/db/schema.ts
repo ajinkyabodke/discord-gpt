@@ -4,8 +4,11 @@
 import { sql } from "drizzle-orm";
 import {
   index,
+  integer,
+  pgEnum,
   pgTableCreator,
   serial,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -17,18 +20,32 @@ import {
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
 export const createTable = pgTableCreator((name) => `discord-gpt_${name}`);
+export const messageRoleEnum = pgEnum("messageRoleEnum", ["assistant", "user"]);
 
-export const posts = createTable(
-  "post",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt"),
-  },
-  (example) => ({
-    nameIndex: index("name_idx").on(example.name),
-  })
-);
+export const messages = createTable("messages", {
+  id: serial("id").primaryKey(),
+  userId: integer("userId")
+    .references(() => users.userId)
+    .notNull(),
+  content: text("content").notNull(),
+  role: messageRoleEnum("role").notNull(),
+  createdAt: timestamp("createdAt", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  deletedAt: timestamp("deletedAt", { withTimezone: true }),
+});
+
+export const users = createTable("users", {
+  userId: varchar("userId", { length: 191 }).primaryKey().notNull(), // matches with Clerk
+  emailAddress: varchar("emailAddress", { length: 191 }).unique().notNull(),
+  createdAt: timestamp("createdAt", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  deletedAt: timestamp("deletedAt", { withTimezone: true }),
+});
