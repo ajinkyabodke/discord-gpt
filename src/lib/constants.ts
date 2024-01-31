@@ -18,3 +18,230 @@ export const channels = [
   { id: 2, type: "text", name: "general" },
   { id: 2, type: "audio", name: "group coding" },
 ];
+
+export const messages = [
+  {
+    key: "1",
+    id: "1",
+    currentMember: "John",
+    member: "Alice",
+    content: "Hello, how are you?",
+    imageUrl:
+      "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ2l0aHViL2ltZ18yYmQzUExYd05uNjJPVmhWVnFBNWJSeEdiTDkifQ?width=160",
+    deleted: false,
+    timestamp: "2024-01-31T10:30:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=John",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+  {
+    key: "2",
+    id: "2",
+    currentMember: "Alice",
+    member: "John",
+    content: "I am doing well, thank you!",
+    imageUrl:
+      "https://cdn.discordapp.com/icons/1088780748028379146/ea182e0e702f132fc99514a28f3e2084.webp?size=240",
+    deleted: false,
+    timestamp: "2024-01-31T11:15:00", // Assuming DATE_FORMAT is defined elsewhere
+    isUpdated: false,
+    socketUrl: "wss://example.com/socket",
+    socketQuery: "user=Alice",
+  },
+];
