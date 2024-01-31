@@ -1,3 +1,4 @@
+import { NavigationSidebar } from "@/components/navigation/navigation-sidebar";
 import { ServerSidebar } from "@/components/server/server-sidebar";
 import React from "react";
 
@@ -8,11 +9,13 @@ const ServerIdLayout = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="h-full">
-      <div className="fixed inset-y-0 z-20 hidden h-full w-60 flex-col md:flex">
+    <div className="flex h-screen">
+      <div className="hidden md:flex">
+        <NavigationSidebar />
         <ServerSidebar serverId={params.serverId} />
       </div>
-      <main className="h-full md:pl-60">{children}</main>
+
+      {children}
     </div>
   );
 };

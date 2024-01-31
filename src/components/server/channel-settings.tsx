@@ -4,7 +4,7 @@ export const ChannelSettings = () => {
   return (
     <div className="flex h-screen justify-center bg-[#2b2d31] text-white">
       <div className="flex w-5/12 justify-end bg-[#2b2d31]">
-        <div className="flex flex-col items-end border-r border-gray-700 bg-[#2b2d31] p-5 pt-16">
+        <div className="flex flex-col items-start border-r border-gray-700 bg-[#2b2d31] p-5 pt-16">
           <div className="mb-4 font-semibold text-gray-400"># GENERAL</div>
           <div className="flex flex-col space-y-2">
             <button className="text-left text-white">Overview</button>

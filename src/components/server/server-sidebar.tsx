@@ -17,7 +17,7 @@ interface ServerSidebarProps {
 
 export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
   return (
-    <div className="flex h-full w-full flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
+    <div className="flex h-full w-72 flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
       <ServerHeader serverId={serverId} />
       <ScrollArea className="flex-1 px-3">
         {/* Browse Channels */}
@@ -33,14 +33,19 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
         </div>
         {/* Text Channels */}
         <Separator className="my-2 rounded-md bg-zinc-200 dark:bg-zinc-700" />
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-1"
+          className="w-full"
+        >
           <AccordionItem value="item-1">
             <AccordionTrigger>
               <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
                 Text Channels
               </div>
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent onCha>
               <div>
                 {channels
                   .filter((channel) => channel.type === "text")
