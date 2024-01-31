@@ -7,14 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import type { server } from "types";
+
 import { serverList } from "@/lib/constants";
 import {
   ChevronDown,
   LogOut,
   PlusCircle,
   Settings,
-  Trash,
   UserPlus,
   Users,
 } from "lucide-react";
