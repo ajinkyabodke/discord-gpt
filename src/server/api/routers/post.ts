@@ -14,8 +14,20 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const threadId = "thread_CdlEm8vRTxisWnkfuQsMb0Ir";
-const assistantsId = "asst_70IEFMHgxh07oS5xui6VGG1H";
+// const assistant = await openai.beta.assistants.create({
+//   name: "Math Tutor",
+//   instructions:
+//     "You are a helpful assistant",
+
+//   model: "gpt-3.5-turbo-1106",
+// });
+// console.log(assistant);
+
+// const thread = await openai.beta.threads.create();
+// console.log("thread : ", thread);
+
+const threadId = "thread_ohKsezU3EcCPWVDML0mpzllL";
+const assistantsId = "asst_5NFyQYThhxYctQca5hItGn59";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
