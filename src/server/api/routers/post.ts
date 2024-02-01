@@ -26,8 +26,8 @@ const openai = new OpenAI({
 // const thread = await openai.beta.threads.create();
 // console.log("thread : ", thread);
 
-const threadId = "thread_ohKsezU3EcCPWVDML0mpzllL";
-const assistantsId = "asst_5NFyQYThhxYctQca5hItGn59";
+const threadId = "thread_o4NfKtmMIa4z4kvS5eJ0dbsh";
+const assistantsId = "asst_xMAFDkD3cuc4BYjCMTg4hMyE";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure

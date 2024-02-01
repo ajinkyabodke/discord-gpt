@@ -68,7 +68,7 @@ export const ChatMessages = ({
         async (payload) => {
           const userData = await getUserByUserId(payload.new.userId);
           setPosts([...posts, { messages: payload.new, users: userData }]);
-          // console.log(posts);
+          console.log(payload.new);
           // Scroll to the bottom when posts change
           scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
           setTimeout(() => {

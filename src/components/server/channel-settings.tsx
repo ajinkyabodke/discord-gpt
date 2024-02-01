@@ -1,4 +1,5 @@
 import React from "react";
+import { Separator } from "../ui/separator";
 
 export const ChannelSettings = () => {
   return (
@@ -33,11 +34,11 @@ export const ChannelSettings = () => {
               <input
                 className="rounded bg-[#202225] px-3 py-2 text-white"
                 id="channel-name"
-                readOnly
                 type="text"
-                value="notes"
+                value="welcome"
               />
             </div>
+            <Separator className="bg-slate-700" />
             <div className="flex flex-col">
               <label
                 className="mb-2 text-sm font-semibold"
@@ -52,7 +53,7 @@ export const ChannelSettings = () => {
                 readOnly
                 rows={3}
               />
-              <div className="mt-1 text-right text-xs text-gray-500">1024</div>
+              <div className="mt-1 text-right text-xs text-gray-500">1024</div>S
             </div>
             <div className="flex flex-col">
               <label className="mb-2 text-sm font-semibold">SLOWMODE</label>
