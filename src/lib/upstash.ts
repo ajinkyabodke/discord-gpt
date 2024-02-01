@@ -10,7 +10,8 @@ export const scheduleMessageCheck = async ({
   threadId: string;
   messageId: string;
 }) => {
-  const callbackUrl = absoluteUrl("/api/check");
+  // const callbackUrl = absoluteUrl("/api/check");
+  const callbackUrl = "https://discord-gptt.vercel.app/api/check";
   console.log(callbackUrl);
 
   const res = await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
