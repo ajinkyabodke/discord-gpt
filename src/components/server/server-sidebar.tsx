@@ -1,3 +1,4 @@
+"use client";
 import { TextSearch } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
 import { ServerHeader } from "./server-header";
@@ -10,14 +11,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import { currentUser, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 interface ServerSidebarProps {
   serverId: string;
 }
 
-export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
-  const user = await currentUser();
+export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
+  const user = useUser();
 
   return (
     <div className="flex h-full w-72 flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
@@ -113,7 +114,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
               decoding="async"
               data-nimg={1}
               className="rounded-full"
-              src={user?.imageUrl}
+              src={user.user?.imageUrl}
               style={{ color: "transparent" }}
             />
             <div className="border-midground absolute -bottom-1 -right-1 flex h-[15px] w-[15px] items-center justify-center rounded-full border-[3px] bg-red-600">
@@ -121,7 +122,7 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold">{user?.firstName}</div>
+            <div className="text-xs font-semibold">{user.user?.firstName}</div>
             <div className="text-[11px] text-gray-300">Don't Disturb</div>
           </div>
         </button>
