@@ -13,7 +13,7 @@ export const scheduleMessageCheck = async ({
   const callbackUrl = absoluteUrl("/api/check");
   console.log(callbackUrl);
 
-  await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
+  const res = await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${env.QSTASH_TOKEN}`,
@@ -22,4 +22,6 @@ export const scheduleMessageCheck = async ({
     },
     body: JSON.stringify({ threadId, runId, messageId }),
   });
+
+  console.log("upstash respone", res);
 };

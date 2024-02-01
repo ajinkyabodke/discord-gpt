@@ -10,12 +10,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { currentUser, useUser } from "@clerk/nextjs";
 
 interface ServerSidebarProps {
   serverId: string;
 }
 
-export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
+export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
+  const user = await currentUser();
+
   return (
     <div className="flex h-full w-72 flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
       <ServerHeader serverId={serverId} />
@@ -45,7 +48,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
                 Text Channels
               </div>
             </AccordionTrigger>
-            <AccordionContent onCha>
+            <AccordionContent>
               <div>
                 {channels
                   .filter((channel) => channel.type === "text")
@@ -103,14 +106,14 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
         >
           <div className="relative flex h-8 h-8 w-8 w-8 items-center justify-center rounded-full bg-white/5 text-white">
             <img
-              alt="Repeep"
+              alt="User"
               fetchpriority="high"
               width={32}
               height={32}
               decoding="async"
               data-nimg={1}
               className="rounded-full"
-              src="https://avatars.githubusercontent.com/u/16727448?v=4"
+              src={user?.imageUrl}
               style={{ color: "transparent" }}
             />
             <div className="border-midground absolute -bottom-1 -right-1 flex h-[15px] w-[15px] items-center justify-center rounded-full border-[3px] bg-red-600">
@@ -118,7 +121,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
             </div>
           </div>
           <div>
-            <div className="text-xs font-semibold">Repeep</div>
+            <div className="text-xs font-semibold">{user?.firstName}</div>
             <div className="text-[11px] text-gray-300">Don't Disturb</div>
           </div>
         </button>
