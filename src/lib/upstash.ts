@@ -24,5 +24,9 @@ export const scheduleMessageCheck = async ({
     body: JSON.stringify({ threadId, runId, messageId }),
   });
 
-  console.log("upstash respone", res);
+  if (!res.ok) {
+    throw new Error(`Upstash failed : ${res.status} ${await res.text()} ` );
+  }
+
+
 };
