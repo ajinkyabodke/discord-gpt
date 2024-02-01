@@ -46,7 +46,7 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close className="absolute right-5 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-transparent data-[state=open]:text-muted-foreground md:right-[260px] md:top-14">
         <XCircle className="h-8 w-8" />
-        <p className="hidden text-sm md:block">ESC</p>
+        <p className="text-sm hidden md:block">ESC</p>
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

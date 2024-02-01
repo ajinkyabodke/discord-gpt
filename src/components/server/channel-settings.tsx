@@ -3,29 +3,44 @@ import { Separator } from "../ui/separator";
 import { ScrollArea } from "../ui/scroll-area";
 import { Slider } from "../ui/slider";
 import { Switch } from "../ui/switch";
+import { MobileToggleChannel } from "../mobile-toggle-channel";
 
 export const ChannelSettings = () => {
   return (
     <ScrollArea>
-      <div className="flex h-full justify-center bg-[#f2f3f5] text-[#4e5058] dark:text-[#b5bac1]  dark:bg-[#2b2d31]">
-        <div className="flex w-5/12 justify-end bg-[#f2f3f5] dark:bg-[#2b2d31]">
-          <div className="flex flex-col items-start bg-[#f2f3f5] p-5 pt-16 dark:bg-[#2b2d31]">
-            <div className="mb-4 font-semibold text-[#4e5058] dark:text-[#b5bac1] dark:text-[#b5bac1]"># GENERAL</div>
-            <div className="flex flex-col space-y-2">
-              <button className="text-left text-[#4e5058] dark:text-[#b5bac1]">Overview</button>
-              <button className="text-left text-[#4e5058] dark:text-[#b5bac1]">Permissions</button>
-              <button className="text-left text-[#4e5058] dark:text-[#b5bac1]">Invites</button>
-              <button className="text-left text-[#4e5058] dark:text-[#b5bac1]">Integrations</button>
-              <button className="mt-4 text-left text-red-500">
+      <div className="flex h-full justify-center bg-[#f2f3f5] text-[#4e5058] dark:bg-[#2b2d31]  dark:text-[#b5bac1]">
+        <div className="hidden w-5/12 justify-end bg-[#f2f3f5] dark:bg-[#2b2d31] md:block">
+          <div className="flex w-40 flex-col items-start bg-[#f2f3f5] pt-16 dark:bg-[#2b2d31]">
+            <div className="mb-1 w-full px-5 text-sm font-semibold text-[#4e5058] dark:text-[#b5bac1]">
+              # GENERAL
+            </div>
+            <div className="flex w-full flex-col space-y-2 px-2">
+              <button className="w-full rounded-sm px-2 text-left text-[#4e5058] dark:bg-[#404249] dark:text-[#fff]">
+                Overview
+              </button>
+              <button className="w-full px-2 text-left text-[#4e5058] dark:text-[#b5bac1]">
+                Permissions
+              </button>
+              <button className="w-full px-2 text-left text-[#4e5058] dark:text-[#b5bac1]">
+                Invites
+              </button>
+              <button className="w-full px-2 text-left text-[#4e5058] dark:text-[#b5bac1]">
+                Integrations
+              </button>
+              <button className="mt-4 w-full px-2 text-left text-red-500">
                 Delete Channel
               </button>
             </div>
           </div>
         </div>
+
         <div className="w-full bg-white dark:bg-[#313338]">
+          <MobileToggleChannel />
           <div className="max-w-3xl items-start overflow-auto bg-white p-8 pt-16 dark:bg-[#313338]">
             <div className="mb-6 flex justify-between">
-              <h1 className="text-xl font-bold">Overview</h1>
+              <h1 className="text-xl font-bold text-[#060607] dark:text-[#f2f3f5]">
+                Overview
+              </h1>
             </div>
             <div className="flex flex-col space-y-6">
               <div className="flex flex-col">
