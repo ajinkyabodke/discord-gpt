@@ -11,6 +11,7 @@ export const scheduleMessageCheck = async ({
   messageId: string;
 }) => {
   const callbackUrl = absoluteUrl("/api/check");
+  console.log(callbackUrl);
 
   await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
     method: "POST",
