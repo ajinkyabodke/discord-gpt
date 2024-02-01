@@ -5,15 +5,19 @@ import { Loader2 } from "lucide-react";
 import { ChatWelcome } from "./chat-welcome";
 import { ChatItem } from "./chat-item";
 import { ScrollArea } from "../ui/scroll-area";
-import type { MessagesSelectType } from "@/server/db/schema";
+import { users, type MessagesSelectType } from "@/server/db/schema";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { env } from "@/env";
+import { cn } from "@/lib/utils";
+import { getUserByUserId } from "@/server/actions";
 
 export const ChatMessages = ({
   messages,
+  userInfo,
 }: {
   messages: MessagesSelectType;
+  userInfo: any;
 }) => {
   // const chatId = 1;
 
@@ -40,12 +44,16 @@ export const ChatMessages = ({
   // }
 
   const [posts, setPosts] = useState(messages);
-  const scrollRef = useRef();
+  const scriptRef = useRef();
 
   const supabase = createClient(
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   );
+
+  useEffect(() => {
+    scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
+  }, []);
 
   useEffect(() => {
     const channel = supabase
@@ -57,11 +65,15 @@ export const ChatMessages = ({
           schema: "public",
           table: "discord-gpt_messages",
         },
-        (payload) => {
-          setPosts([...posts, payload.new]);
+        async (payload) => {
+          const userData = await getUserByUserId(payload.new.userId);
+          setPosts([...posts, { messages: payload.new, users: userData }]);
           console.log(posts);
           // Scroll to the bottom when posts change
-          scrollRef.current.scrollTop = scrollRef.current.scrollHeight + 100;
+          scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
+          setTimeout(() => {
+            scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
+          }, 100);
         },
       )
       .subscribe();
@@ -69,28 +81,26 @@ export const ChatMessages = ({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [supabase, posts, setPosts]);
+  }, [supabase, posts]);
 
   return (
     <div className="flex flex-1 flex-col justify-end overflow-y-auto py-1">
-      <ScrollArea>
-        <div className="flex-1" />
-        <ChatWelcome />
-        <div className="mt-auto flex flex-col " ref={scrollRef}>
-          <Fragment>
-            {posts.map((message) => (
-              <ChatItem
-                key={message.id}
-                content={message.content}
-                id={message.id}
-                imageUrl={message.imageUrl}
-                timestamp={message.createdAt}
-              ></ChatItem>
-            ))}
-          </Fragment>
-        </div>
-        <div />
-      </ScrollArea>
+      <div className="flex-1" />
+      <ChatWelcome />
+      <div className="mt-auto flex flex-col overflow-y-scroll " ref={scriptRef}>
+        {posts.map((message) => (
+          <ChatItem
+            key={message.messages.id}
+            content={message.messages.content}
+            id={message.messages.id}
+            role={message.messages.role}
+            timestamp={message.messages.createdAt}
+            imageUrl={message.users?.imageUrl}
+            name={message.users?.name}
+          />
+        ))}
+      </div>
+      <div />
     </div>
   );
 };

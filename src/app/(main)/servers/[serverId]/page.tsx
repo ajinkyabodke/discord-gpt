@@ -5,17 +5,25 @@ import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
 import { api } from "@/trpc/server";
 import { db } from "@/server/db";
+import { messages, users } from "@/server/db/schema";
+import { eq } from "drizzle-orm";
 
 export default async function Home() {
   // await api.post.sendMessage.mutate({
   //   content: "hello Pranve!",
   // });
-  const messages = await db.query.messages.findMany();
+  // const messages = await db.query.messages.findMany({});
+  const result = await db
+    .select()
+    .from(messages)
+    .leftJoin(users, eq(messages.userId, users.userId));
+
+  console.log(result);
 
   return (
     <div className="flex h-full w-screen flex-col bg-white dark:bg-[#313338]">
       <ChatHeader />
-      <ChatMessages messages={messages} />
+      <ChatMessages messages={result} />
       <ChatInput />
     </div>
   );

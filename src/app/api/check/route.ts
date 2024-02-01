@@ -7,10 +7,7 @@ import { db } from "@/server/db";
 import { messages } from "@/server/db/schema";
 
 async function handler(_req: NextRequest) {
-  console.log("got response from upstash ", _req.headers);
   const data = await _req.json();
-
-  console.log("upstash ", data);
 
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -19,7 +16,6 @@ async function handler(_req: NextRequest) {
     data.threadId,
     data.runId,
   );
-  console.log("run upstash ", run.status);
 
   if (run.status === "queued" || run.status === "in_progress") {
     await scheduleMessageCheck({
@@ -43,6 +39,7 @@ async function handler(_req: NextRequest) {
       .values({
         content: messageContent,
         role: "assistant",
+        userId: "gptuserid",
       })
       .returning();
     return new Response("OK", { status: 200 });

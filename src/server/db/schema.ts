@@ -24,7 +24,9 @@ export const messageRoleEnum = pgEnum("messageRoleEnum", ["assistant", "user"]);
 
 export const messages = createTable("messages", {
   id: serial("id").primaryKey(),
-  userId: varchar("userId", { length: 191 }),
+  userId: varchar("userId", { length: 191 })
+    .references(() => users.userId)
+    .notNull(),
   content: text("content").notNull(),
   role: messageRoleEnum("role").notNull(),
   createdAt: timestamp("createdAt", { withTimezone: true })
@@ -41,6 +43,8 @@ export type MessagesSelectType = InferSelectModel<typeof messages>;
 export const users = createTable("users", {
   userId: varchar("userId", { length: 191 }).primaryKey().notNull(), // matches with Clerk
   emailAddress: varchar("emailAddress", { length: 191 }).unique().notNull(),
+  imageUrl: text("imageUrl"),
+  name: varchar("userName", { length: 50 }),
   createdAt: timestamp("createdAt", { withTimezone: true })
     .defaultNow()
     .notNull(),

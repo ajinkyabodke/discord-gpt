@@ -4,19 +4,28 @@ import { ActionTooltip } from "../action-tooltip";
 import { cn } from "@/lib/utils";
 import { Edit, Trash } from "lucide-react";
 import { ScrollArea } from "../ui/scroll-area";
+import { MessagesSelectType } from "@/server/db/schema";
 
-export const ChatItem = ({ id, content, timestamp }) => {
+export const ChatItem = ({ id, content, timestamp, role, imageUrl, name }) => {
   return (
     <div className="group relative flex w-full items-center p-4 transition hover:bg-black/5">
       <div className="group flex w-full items-start gap-x-2">
         <div className="cursor-pointer transition hover:drop-shadow-md">
-          {/* <UserAvatar src={imageUrl}></UserAvatar>{" "} */}
+          {role === "assistant" ? (
+            <UserAvatar
+              src={
+                "https://cdn.discordapp.com/icons/1015095797689360444/af578001e4a166fd6181c3757b71ff39.webp?size=240"
+              }
+            ></UserAvatar>
+          ) : (
+            <UserAvatar src={imageUrl}></UserAvatar>
+          )}
         </div>
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
               <p className="cursor-pointer text-sm font-semibold hover:underline">
-                {/* {member} */}
+                {role === "assistant" ? "GPT" : name}
               </p>
             </div>
             <span className="text-xs text-zinc-500 dark:text-zinc-400">

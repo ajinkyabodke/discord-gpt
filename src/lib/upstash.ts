@@ -12,15 +12,13 @@ export const scheduleMessageCheck = async ({
 }) => {
   const callbackUrl = absoluteUrl("/api/check");
 
-
-await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
+  await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${env.QSTASH_TOKEN}`,
       "Content-Type": "application/json",
-      "Upstash-Delay": "30s",
+      "Upstash-Delay": "10s",
     },
     body: JSON.stringify({ threadId, runId, messageId }),
   });
-
 };
