@@ -24,3 +24,11 @@ export function absoluteUrl(path: string) {
   // console.log("absoluteUrl generated:", url);
   return url;
 }
+
+export function playDiscordNotificationSound() {
+  // URL of the Discord notification sound
+  const soundURL =
+    "https://www.myinstants.com/media/sounds/discord-notification.mp3"; // Replace this URL with the actual sound file's URL
+  const audio = new Audio(soundURL);
+  audio.play();
+}

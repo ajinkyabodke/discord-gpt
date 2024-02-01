@@ -9,15 +9,14 @@ import { users, type MessagesSelectType } from "@/server/db/schema";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import { env } from "@/env";
-import { cn } from "@/lib/utils";
+import { cn, playDiscordNotificationSound } from "@/lib/utils";
 import { getUserByUserId } from "@/server/actions";
+import { useAuth } from "@clerk/nextjs";
 
 export const ChatMessages = ({
   messages,
-  userInfo,
 }: {
   messages: MessagesSelectType;
-  userInfo: any;
 }) => {
   // const chatId = 1;
 
@@ -46,6 +45,8 @@ export const ChatMessages = ({
   const [posts, setPosts] = useState(messages);
   const scriptRef = useRef();
 
+  const user = useAuth();
+
   const supabase = createClient(
     env.NEXT_PUBLIC_SUPABASE_URL,
     env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -68,6 +69,9 @@ export const ChatMessages = ({
         async (payload) => {
           const userData = await getUserByUserId(payload.new.userId);
           setPosts([...posts, { messages: payload.new, users: userData }]);
+          if (payload.new.userId !== user.userId) {
+            playDiscordNotificationSound();
+          }
           console.log(payload.new);
           // Scroll to the bottom when posts change
           scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
