@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { UserAvatar } from "../user-avatar";
 import { ActionTooltip } from "../action-tooltip";
@@ -24,12 +25,22 @@ export const ChatItem = ({ id, content, timestamp, role, imageUrl, name }) => {
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p className="cursor-pointer text-sm font-semibold hover:underline">
+              <p className="cursor-pointer text-sm font-semibold text-blue-400 hover:underline">
                 {role === "assistant" ? "GPT" : name}
               </p>
             </div>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400">
-              {/* {timestamp} */}
+            <span
+              className="text-xs text-zinc-500 dark:text-zinc-400"
+              suppressHydrationWarning
+            >
+              {timestamp.toLocaleString(undefined, {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              })}
             </span>
           </div>
           <p className={cn("text-sm text-zinc-600 dark:text-zinc-300")}>

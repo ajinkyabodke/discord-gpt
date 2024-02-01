@@ -96,7 +96,8 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
 
         {/* Dump */}
       </ScrollArea>
-      <div className="bg-semibackground flex justify-between gap-1 px-2 py-1.5">
+
+      <div className="flex justify-between gap-1 bg-[#ebedef] px-2 py-1.5 dark:bg-[#232428]">
         <button
           className="flex gap-2 rounded-md py-1 pl-0.5 pr-2 text-left leading-tight hover:bg-white/20"
           type="button"
@@ -123,12 +124,12 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
           </div>
           <div>
             <div className="text-xs font-semibold">{user.user?.firstName}</div>
-            <div className="text-[11px] text-gray-300">Don't Disturb</div>
+            <div className="text-[11px] text-gray-500">Don't Disturb</div>
           </div>
         </button>
         <div className="flex items-center">
           <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-gray-300 hover:bg-gray-700 hover:text-gray-200"
+            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
             data-state="closed"
           >
             <svg
@@ -147,7 +148,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
             <div className="border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700" />
           </button>
           <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-gray-300 hover:bg-gray-700 hover:text-gray-200"
+            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
             data-state="closed"
           >
             <svg
@@ -164,7 +165,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
             </svg>
           </button>
           <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-gray-300 hover:bg-gray-700 hover:text-gray-200"
+            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
             data-state="closed"
           >
             <svg

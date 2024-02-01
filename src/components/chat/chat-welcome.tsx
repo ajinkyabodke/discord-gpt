@@ -9,7 +9,7 @@ export const ChatWelcome = () => {
 
       <p className="text-xl font-bold md:text-3xl">How can I help you today?</p>
       <p className="text-sm text-zinc-600 dark:text-zinc-400">
-        Type your question below
+        Type your question below and tag @gpt to get them answered.
       </p>
     </div>
   );

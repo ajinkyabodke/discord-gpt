@@ -68,7 +68,7 @@ export const ChatMessages = ({
         async (payload) => {
           const userData = await getUserByUserId(payload.new.userId);
           setPosts([...posts, { messages: payload.new, users: userData }]);
-          console.log(posts);
+          // console.log(posts);
           // Scroll to the bottom when posts change
           scriptRef.current.scrollTop = scriptRef.current.scrollHeight;
           setTimeout(() => {
@@ -86,8 +86,9 @@ export const ChatMessages = ({
   return (
     <div className="flex flex-1 flex-col justify-end overflow-y-auto py-1">
       <div className="flex-1" />
-      <ChatWelcome />
       <div className="mt-auto flex flex-col overflow-y-scroll " ref={scriptRef}>
+        <ChatWelcome />
+
         {posts.map((message) => (
           <ChatItem
             key={message.messages.id}
