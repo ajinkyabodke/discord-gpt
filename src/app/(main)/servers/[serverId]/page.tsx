@@ -16,7 +16,8 @@ export default async function Home() {
   const result = await db
     .select()
     .from(messages)
-    .leftJoin(users, eq(messages.userId, users.userId));
+    .leftJoin(users, eq(messages.userId, users.userId))
+    .orderBy(messages.createdAt);
 
   return (
     <div className="flex h-full w-screen flex-col bg-white dark:bg-[#313338]">
