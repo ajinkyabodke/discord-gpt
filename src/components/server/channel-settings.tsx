@@ -9,7 +9,7 @@ export const ChannelSettings = () => {
   return (
     <ScrollArea>
       <div className="flex h-full justify-center bg-[#f2f3f5] text-[#4e5058] dark:bg-[#2b2d31]  dark:text-[#b5bac1]">
-        <div className="hidden w-5/12 justify-end bg-[#f2f3f5] dark:bg-[#2b2d31] md:block">
+        <div className="hidden w-5/12 justify-end bg-[#f2f3f5] dark:bg-[#2b2d31] md:flex">
           <div className="flex w-40 flex-col items-start bg-[#f2f3f5] pt-16 dark:bg-[#2b2d31]">
             <div className="mb-1 w-full px-5 text-sm font-semibold text-[#4e5058] dark:text-[#b5bac1]">
               # GENERAL

@@ -48,7 +48,7 @@ export const ChatHeader = () => {
           <Users className="mr-2 h-6 w-6 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
         </button>
 
-        <div className="hidden h-[30px] w-[180px] md:block">
+        <div className="hidden h-[30px] w-[180px] pr-1 md:block">
           <Command>
             <CommandInput placeholder="Search" />
           </Command>
