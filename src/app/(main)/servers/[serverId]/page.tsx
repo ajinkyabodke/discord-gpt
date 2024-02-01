@@ -10,14 +10,12 @@ export default async function Home() {
   // await api.post.sendMessage.mutate({
   //   content: "hello Pranve!",
   // });
-const messages = await db.query.messages.findMany();
-
-
+  const messages = await db.query.messages.findMany();
 
   return (
     <div className="flex h-full w-screen flex-col bg-white dark:bg-[#313338]">
       <ChatHeader />
-      <ChatMessages messages={messages}/>
+      <ChatMessages messages={messages} />
       <ChatInput />
     </div>
   );

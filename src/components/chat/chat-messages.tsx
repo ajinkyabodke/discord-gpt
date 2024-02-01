@@ -1,16 +1,14 @@
 "use client";
 
-import { Fragment, useRef, ElementRef } from "react";
-import { format } from "date-fns";
-
-import { Loader2, ServerCrash } from "lucide-react";
-
+import { Fragment, useState, useEffect, useRef } from "react";
+import { Loader2 } from "lucide-react";
 import { ChatWelcome } from "./chat-welcome";
 import { ChatItem } from "./chat-item";
 import { ScrollArea } from "../ui/scroll-area";
-import { MessagesSelectType } from "@/server/db/schema";
-
-const DATE_FORMAT = "d MMM yyyy, HH:mm";
+import type { MessagesSelectType } from "@/server/db/schema";
+import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
+import { env } from "@/env";
 
 export const ChatMessages = ({
   messages,
@@ -41,26 +39,46 @@ export const ChatMessages = ({
   //   );
   // }
 
-  
+  const [posts, setPosts] = useState(messages);
+  const scrollRef = useRef();
+
+  const supabase = createClient(
+    env.NEXT_PUBLIC_SUPABASE_URL,
+    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  );
+
+  useEffect(() => {
+    const channel = supabase
+      .channel("realtime messages")
+      .on(
+        "postgres_changes",
+        {
+          event: "INSERT",
+          schema: "public",
+          table: "discord-gpt_messages",
+        },
+        (payload) => {
+          setPosts([...posts, payload.new]);
+          console.log(posts);
+          // Scroll to the bottom when posts change
+          scrollRef.current.scrollTop = scrollRef.current.scrollHeight + 100;
+        },
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [supabase, posts, setPosts]);
+
   return (
     <div className="flex flex-1 flex-col justify-end overflow-y-auto py-1">
       <ScrollArea>
-        {true && <div className="flex-1" />}
-        {true && <ChatWelcome />}
-        {false && (
-          <div className="flex justify-center">
-            {false ? (
-              <Loader2 className="my-4 h-6 w-6 animate-spin text-zinc-500" />
-            ) : (
-              <button className="my-4 text-xs text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
-                Load previous messages
-              </button>
-            )}
-          </div>
-        )}
-        <div className="mt-auto flex flex-col">
+        <div className="flex-1" />
+        <ChatWelcome />
+        <div className="mt-auto flex flex-col " ref={scrollRef}>
           <Fragment>
-            {messages.map((message) => (
+            {posts.map((message) => (
               <ChatItem
                 key={message.id}
                 content={message.content}

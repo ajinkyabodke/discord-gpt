@@ -31,6 +31,8 @@ export const env = createEnv({
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
     NEXT_PUBLIC_LOCAL_TUNNEL_URL: z.string().url().optional(),
+    NEXT_PUBLIC_SUPABASE_URL: z.string(),
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
     NEXT_PUBLIC_APP_URL: z
       .preprocess((str) => process.env.VERCEL_URL ?? str, z.string())
       .transform((val) => {
@@ -80,9 +82,9 @@ export const env = createEnv({
     NEXT_PUBLIC_LOCAL_TUNNEL_URL: process.env.NEXT_PUBLIC_LOCAL_TUNNEL_URL,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
-
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
-
     NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
     NEXT_PUBLIC_SHOW_DEBUG_CONTROLS:
       process.env.NEXT_PUBLIC_SHOW_DEBUG_CONTROLS,
