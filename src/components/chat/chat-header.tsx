@@ -9,16 +9,16 @@ export const ChatHeader = () => {
   const params = useParams();
   return (
     <div className="text-md flex h-12 w-full items-center justify-between border-b-2 border-neutral-200 px-3 font-semibold dark:border-neutral-800">
-      <div>
+      <div className="flex items-center justify-center align-bottom">
         <MobileToggle serverId={params.serverId} />
-        <div className="flex ">
+        <div className="flex items-center justify-center">
           <Hash className="mr-2 h-5 w-5 text-zinc-500 dark:text-zinc-400" />
           <p className="text-md font-semibold text-black dark:text-white">
             general
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-x-2">
+      <div className="flex items-center gap-x-1">
         <button className="mb-[2px] mr-2 flex h-6 w-6 items-center justify-center ">
           <svg
             x={0}
@@ -48,7 +48,7 @@ export const ChatHeader = () => {
           <Users className="mr-2 h-6 w-6 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
         </button>
 
-        <div className="h-[30px] w-[180px] ">
+        <div className="hidden h-[30px] w-[180px] md:block">
           <Command>
             <CommandInput placeholder="Search" />
           </Command>
@@ -58,7 +58,7 @@ export const ChatHeader = () => {
           <Inbox className="mr-2 h-6 w-6 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
         </button>
         <button>
-          <HelpCircle className="mr-2 h-7 w-7 stroke-zinc-500  hover:stroke-zinc-700 dark:fill-zinc-400 dark:stroke-zinc-800 dark:hover:stroke-zinc-100" />
+          <HelpCircle className="mr-2 hidden h-7 w-7 stroke-zinc-500 hover:stroke-zinc-700  dark:fill-zinc-400 dark:stroke-zinc-800 dark:hover:stroke-zinc-100 sm:block" />
         </button>
       </div>
     </div>

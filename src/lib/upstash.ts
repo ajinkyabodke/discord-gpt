@@ -19,14 +19,12 @@ export const scheduleMessageCheck = async ({
     headers: {
       Authorization: `Bearer ${env.QSTASH_TOKEN}`,
       "Content-Type": "application/json",
-      "Upstash-Delay": "10s",
+      "Upstash-Delay": "2s",
     },
     body: JSON.stringify({ threadId, runId, messageId }),
   });
 
   if (!res.ok) {
-    throw new Error(`Upstash failed : ${res.status} ${await res.text()} ` );
+    throw new Error(`Upstash failed : ${res.status} ${await res.text()} `);
   }
-
-
 };
