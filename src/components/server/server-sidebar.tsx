@@ -305,7 +305,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
           </div>
           <div>
             <div className="text-xs font-semibold">{user.user?.firstName}</div>
-            <div className="text-[11px] text-gray-500">Don't Disturb</div>
+            <div className="text-[11px] text-gray-500">Do Not Disturb</div>
           </div>
         </button>
 

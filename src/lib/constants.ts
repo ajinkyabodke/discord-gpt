@@ -65,8 +65,7 @@ export const channels = [
   { id: 2, type: "text", name: "general" },
   { id: 3, type: "text", name: "debian" },
   { id: 4, type: "audio", name: "group coding" },
-
-  { id: 4, type: "audio", name: "ios vc" },
+  { id: 5, type: "audio", name: "ios vc" },
 ];
 
 export const messages = [
