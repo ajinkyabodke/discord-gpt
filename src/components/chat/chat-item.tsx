@@ -38,14 +38,23 @@ export const ChatItem = ({ id, content, timestamp, role, imageUrl, name }) => {
               className="text-xs text-zinc-500 dark:text-zinc-400"
               suppressHydrationWarning
             >
-              {new Date(timestamp).toLocaleString("en-US", {
+              {timestamp}
+              {/* {new Date(timestamp).toLocaleString("en-US", {
+                hour12: true,
+                month: "2-digit",
+                day: "2-digit",
+                year: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+              })} */}
+              {/* {new Date(timestamp).toLocaleString("en-US", {
                 month: "2-digit",
                 day: "2-digit",
                 year: "numeric",
                 hour: "numeric",
                 minute: "numeric",
                 hour12: true,
-              })}
+              })} */}
             </span>
           </div>
           <p className={cn("text-sm text-zinc-600 dark:text-zinc-300")}>

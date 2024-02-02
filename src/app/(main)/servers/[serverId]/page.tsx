@@ -13,16 +13,32 @@ export default async function Home() {
   //   content: "hello Pranve!",
   // });
   // const messages = await db.query.messages.findMany({});
-  const result = await db
+  let result = await db
     .select()
     .from(messages)
     .leftJoin(users, eq(messages.userId, users.userId))
     .orderBy(messages.createdAt);
 
+  const updatedArray = result.map((item) => {
+    item.messages.createdAt = new Date(item.messages.createdAt).toLocaleString(
+      "en-US",
+      {
+        hour12: true,
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      },
+    );
+    return item;
+  });
+
+
   return (
     <div className="flex h-full w-screen flex-col bg-white dark:bg-[#313338]">
       <ChatHeader />
-      <ChatMessages messages={result} />
+      <ChatMessages messages={updatedArray} />
       <ChatInput />
     </div>
   );
