@@ -32,3 +32,17 @@ export function playDiscordNotificationSound() {
   const audio = new Audio(soundURL);
   audio.play();
 }
+export function playDiscordDisConnectionSound() {
+  // URL of the Discord notification sound
+  const soundURL =
+    "https://www.myinstants.com/media/sounds/discord-unmute-sound.mp3"; // Replace this URL with the actual sound file's URL
+  const audio = new Audio(soundURL);
+  audio.play();
+}
+export function playDiscordConnectionSound() {
+  // URL of the Discord notification sound
+  const soundURL =
+    "https://www.myinstants.com/media/sounds/discord-mute-sound-effect.mp3"; // Replace this URL with the actual sound file's URL
+  const audio = new Audio(soundURL);
+  audio.play();
+}

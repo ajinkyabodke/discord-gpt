@@ -12,6 +12,11 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { useUser } from "@clerk/nextjs";
+import { useState } from "react";
+import {
+  playDiscordConnectionSound,
+  playDiscordDisConnectionSound,
+} from "@/lib/utils";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -19,6 +24,17 @@ interface ServerSidebarProps {
 
 export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
   const user = useUser();
+  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen2, setIsOpen2] = useState(false);
+
+  const handleClick = () => {
+    playDiscordDisConnectionSound();
+    setIsOpen(!isOpen);
+  };
+  const handleClick2 = () => {
+    playDiscordConnectionSound();
+    setIsOpen2(!isOpen2);
+  };
 
   return (
     <div className="flex h-full w-72 flex-col bg-[#F2F3F5] text-primary dark:bg-[#2B2D31]">
@@ -127,10 +143,12 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
             <div className="text-[11px] text-gray-500">Don't Disturb</div>
           </div>
         </button>
+
         <div className="flex items-center">
           <button
             className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
             data-state="closed"
+            onClick={handleClick}
           >
             <svg
               stroke="currentColor"
@@ -145,11 +163,16 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
               <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
               <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
             </svg>
-            <div className="border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700" />
+            {isOpen && (
+              <div
+                className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
+              />
+            )}
           </button>
           <button
             className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
             data-state="closed"
+            onClick={handleClick2}
           >
             <svg
               stroke="currentColor"
@@ -163,6 +186,11 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
             >
               <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
             </svg>
+            {isOpen2 && (
+              <div
+                className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
+              />
+            )}
           </button>
           <button
             className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
