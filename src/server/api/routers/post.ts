@@ -84,7 +84,5 @@ export const postRouter = createTRPCRouter({
         runId: run.id,
         messageId: message.id,
       });
-
-      console.log("Message Sent successfully");
     }),
 });

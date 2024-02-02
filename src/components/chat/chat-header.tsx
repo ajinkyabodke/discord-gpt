@@ -1,11 +1,57 @@
 "use client";
-import { BellOff, Hash, HelpCircle, Inbox, Pin, Users } from "lucide-react";
+import { BellOff, Hash, HelpCircle, Inbox, Pin, Radio } from "lucide-react";
 import React from "react";
 import { MobileToggle } from "../mobile-toggle";
 import { useParams } from "next/navigation";
 import { Command, CommandInput } from "../ui/command";
+import {
+  Bell,
+  Bot,
+  ChevronDown,
+  Diamond,
+  Gem,
+  LogOut,
+  Pencil,
+  PlusCircle,
+  Settings,
+  ShieldEllipsis,
+  UserPlus,
+  Users,
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+import { Checkbox } from "../ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Label } from "../ui/label";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const FormSchema = z.object({
+  type: z.enum(["all", "mentions", "none"], {
+    required_error: "You need to select a notification type.",
+  }),
+});
 
 export const ChatHeader = () => {
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {}
   const params = useParams();
   return (
     <div className="text-md flex h-12 w-full items-center justify-between border-b-2 border-neutral-200 px-3 font-semibold dark:border-neutral-800">
@@ -38,9 +84,68 @@ export const ChatHeader = () => {
             />
           </svg>
         </button>
-        <button>
-          <BellOff className="mr-2 h-6 w-6 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
-        </button>
+        <DropdownMenu>
+          <DropdownMenuTrigger className="focus:outline-none" asChild>
+            <button>
+              <BellOff className="mr-2 h-6 w-6 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
+            </button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuContent className="space-y-[2px] p-3 text-sm font-medium text-black dark:bg-[#111214] dark:text-[#b5bac1]">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="w-full space-y-6 dark:bg-[#111214] dark:text-[#b5bac1]"
+              >
+                <FormField
+                  control={form.control}
+                  name="type"
+                  render={({ field }) => (
+                    <FormItem className="space-y-3">
+                      <FormControl>
+                        <RadioGroup
+                          onValueChange={field.onChange}
+                          defaultValue={"1"}
+                          className="flex flex-col space-y-1"
+                        >
+                          <FormItem
+                            className="flex items-center space-x-3 space-y-0"
+                            id="1"
+                          >
+                            <FormControl>
+                              <RadioGroupItem value="all" />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              All Messages
+                            </FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="mentions" />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              Only @mentions
+                            </FormLabel>
+                          </FormItem>
+                          <FormItem className="flex items-center space-x-3 space-y-0">
+                            <FormControl>
+                              <RadioGroupItem value="none" />
+                            </FormControl>
+                            <FormLabel className="font-normal">
+                              Nothing
+                            </FormLabel>
+                          </FormItem>
+                        </RadioGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </form>
+            </Form>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
         <button>
           <Pin className="mr-2 h-6 w-6 rotate-45 stroke-zinc-500 hover:stroke-zinc-700 dark:stroke-zinc-400 dark:hover:stroke-zinc-100" />
         </button>

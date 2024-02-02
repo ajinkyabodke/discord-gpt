@@ -17,6 +17,7 @@ import {
   playDiscordConnectionSound,
   playDiscordDisConnectionSound,
 } from "@/lib/utils";
+import { ActionTooltip } from "../action-tooltip";
 
 interface ServerSidebarProps {
   serverId: string;
@@ -62,7 +63,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
           <AccordionItem value="item-1">
             <AccordionTrigger>
               <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
-                Text Channels
+                ANNOUNCEMENTS
               </div>
             </AccordionTrigger>
             <AccordionContent>
@@ -111,6 +112,170 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
         </Accordion>
 
         {/* Dump */}
+        {/* Text Channels */}
+        <Separator className="my-2 rounded-md bg-zinc-200 dark:bg-zinc-700" />
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-1"
+          className="w-full"
+        >
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                WEB GANG
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        {/* Text Channels */}
+        <Separator className="my-2 rounded-md bg-zinc-200 dark:bg-zinc-700" />
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-3"
+          className="w-full"
+        >
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                100x Huddle
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-1"
+          className="w-full"
+        >
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                Discuss
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                Share
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue="item-1"
+          className="w-full"
+        >
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                Discuss
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>
+              <div className="text-sm font-semibold uppercase text-zinc-500 transition hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
+                Random
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <div>
+                {channels
+                  .filter((channel) => channel.type === "audio")
+                  .map((channel) => (
+                    <div key={channel.id}>
+                      <ServerChannel
+                        id={channel.id}
+                        name={channel.name}
+                        type={channel.type}
+                      />
+                    </div>
+                  ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </ScrollArea>
 
       <div className="flex justify-between gap-1 bg-[#ebedef] px-2 py-1.5 dark:bg-[#232428]">
@@ -145,70 +310,76 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
         </button>
 
         <div className="flex items-center">
-          <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
-            data-state="closed"
-            onClick={handleClick}
-          >
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 16 16"
-              fontSize={18}
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+          <ActionTooltip label={`${isOpen ? "Unmute" : "Mute"}`}>
+            <button
+              className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
+              data-state="closed"
+              onClick={handleClick}
             >
-              <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
-              <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
-            </svg>
-            {isOpen && (
-              <div
-                className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
-              />
-            )}
-          </button>
-          <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
-            data-state="closed"
-            onClick={handleClick2}
-          >
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 16 16"
-              fontSize={20}
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth={0}
+                viewBox="0 0 16 16"
+                fontSize={18}
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
+                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+              </svg>
+              {isOpen && (
+                <div
+                  className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
+                />
+              )}
+            </button>
+          </ActionTooltip>
+          <ActionTooltip label={`${isOpen2 ? "Undeafen" : "Deafen"}`}>
+            <button
+              className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
+              data-state="closed"
+              onClick={handleClick2}
             >
-              <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
-            </svg>
-            {isOpen2 && (
-              <div
-                className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
-              />
-            )}
-          </button>
-          <button
-            className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
-            data-state="closed"
-          >
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth={0}
-              viewBox="0 0 16 16"
-              fontSize={18}
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth={0}
+                viewBox="0 0 16 16"
+                fontSize={20}
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5z" />
+              </svg>
+              {isOpen2 && (
+                <div
+                  className={`border-semibackground absolute h-3/4 w-[5px] rotate-45 rounded-sm border-[2px] bg-red-500 group-hover:border-gray-700 `}
+                />
+              )}
+            </button>
+          </ActionTooltip>
+          <ActionTooltip label="User Settings">
+            <button
+              className="group relative flex h-8 w-8 items-center justify-center rounded-md text-[#4e5058] hover:bg-gray-700 hover:text-gray-200 dark:text-gray-300"
+              data-state="closed"
             >
-              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-            </svg>
-          </button>
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth={0}
+                viewBox="0 0 16 16"
+                fontSize={18}
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+              </svg>
+            </button>
+          </ActionTooltip>
         </div>
       </div>
     </div>

@@ -25,7 +25,12 @@ export const ChatItem = ({ id, content, timestamp, role, imageUrl, name }) => {
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-x-2">
             <div className="flex items-center">
-              <p className="cursor-pointer text-sm font-semibold text-blue-400 hover:underline">
+              <p
+                className={cn(
+                  role === "assistant" ? "text-orange-300" : "text-blue-400",
+                  "cursor-pointer text-sm font-semibold  hover:underline",
+                )}
+              >
                 {role === "assistant" ? "GPT" : name}
               </p>
             </div>
