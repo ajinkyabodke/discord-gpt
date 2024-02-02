@@ -28,3 +28,30 @@ export const scheduleMessageCheck = async ({
     throw new Error(`Upstash failed : ${res.status} ${await res.text()} `);
   }
 };
+
+export const sendAssistantMessage = async ({
+  threadId,
+  content,
+  assistant_id,
+}: {
+  threadId: string;
+  content: string;
+  assistant_id: string;
+}) => {
+  // const callbackUrl = absoluteUrl("/api/send");
+  const callbackUrl = "https://discord-gptt.vercel.app/api/send";
+  console.log(callbackUrl);
+
+  const res = await fetch(`${env.QSTASH_URL}/${callbackUrl}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${env.QSTASH_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ threadId, content, assistant_id }),
+  });
+
+  if (!res.ok) {
+    throw new Error(`Upstash failed : ${res.status} ${await res.text()} `);
+  }
+};

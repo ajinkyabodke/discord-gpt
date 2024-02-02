@@ -287,7 +287,7 @@ export const ServerSidebar = ({ serverId }: ServerSidebarProps) => {
           aria-controls="radix-:r0:"
           data-state="closed"
         >
-          <div className="relative flex h-8 h-8 w-8 w-8 items-center justify-center rounded-full bg-white/5 text-white">
+          <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white">
             <img
               alt="User"
               fetchpriority="high"

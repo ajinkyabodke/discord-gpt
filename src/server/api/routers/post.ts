@@ -8,7 +8,7 @@ import {
 import { messages } from "@/server/db/schema";
 import OpenAI from "openai";
 import { TRPCError } from "@trpc/server";
-import { scheduleMessageCheck } from "@/lib/upstash";
+import { scheduleMessageCheck, sendAssistantMessage } from "@/lib/upstash";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -47,8 +47,6 @@ export const postRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.auth.userId;
 
-      // const { success } = await ratelimit.limit(authorId);
-      // if (!success) throw new TRPCError({ code: "TOO_MANY_REQUESTS" });
       const [messageStoredInDb] = await ctx.db
         .insert(messages)
         .values({
@@ -70,19 +68,25 @@ export const postRouter = createTRPCRouter({
         return messageStoredInDb;
       }
 
-      const message = await openai.beta.threads.messages.create(threadId, {
-        role: "user",
+      await sendAssistantMessage({
+        threadId,
         content: input.content,
-      });
-
-      const run = await openai.beta.threads.runs.create(threadId, {
         assistant_id: assistantsId,
       });
 
-      await scheduleMessageCheck({
-        threadId,
-        runId: run.id,
-        messageId: message.id,
-      });
+      // const message = await openai.beta.threads.messages.create(threadId, {
+      //   role: "user",
+      //   content: input.content,
+      // });
+
+      // const run = await openai.beta.threads.runs.create(threadId, {
+      //   assistant_id: assistantsId,
+      // });
+
+      // await scheduleMessageCheck({
+      //   threadId,
+      //   runId: run.id,
+      //   messageId: message.id,
+      // });
     }),
 });
