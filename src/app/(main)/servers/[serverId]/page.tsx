@@ -21,7 +21,7 @@ export default async function Home() {
 
   const updatedArray = result.map((item) => {
     item.messages.createdAt = new Date(item.messages.createdAt).toLocaleString(
-      "en-US",
+      "en-IN",
       {
         hour12: true,
         month: "2-digit",
@@ -33,7 +33,6 @@ export default async function Home() {
     );
     return item;
   });
-
 
   return (
     <div className="flex h-full w-screen flex-col bg-white dark:bg-[#313338]">

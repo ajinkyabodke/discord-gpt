@@ -68,7 +68,34 @@ export const ChatMessages = ({
         },
         async (payload) => {
           const userData = await getUserByUserId(payload.new.userId);
-          setPosts([...posts, { messages: payload.new, users: userData }]);
+
+          const formattedCreatedAt = new Date(
+            payload.new.createdAt,
+          ).toLocaleString("en-IN", {
+            hour12: true,
+            month: "2-digit",
+            day: "2-digit",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+          });
+
+          const updatedPost = {
+            messages: {
+              content: payload.new.content,
+              createdAt: formattedCreatedAt,
+              deletedAt: payload.new.deletedAt,
+              id: payload.new.id,
+              role: payload.new.role,
+              updatedAt: payload.new.updatedAt,
+              userId: payload.new.userId,
+            },
+            users: userData,
+          };
+
+          setPosts([...posts, updatedPost]);
+
+          // setPosts([...posts, { messages: payload.new, users: userData }]);f
           if (payload.new.userId !== user.userId) {
             playDiscordNotificationSound();
           }
