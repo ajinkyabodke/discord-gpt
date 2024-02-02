@@ -48,7 +48,7 @@ export const ServerHeader = ({ serverId }: ServerHeaderProps) => {
           </span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className=" flex cursor-pointer items-center justify-between px-3 py-2 text-sm text-white dark:text-indigo-400 dark:hover:bg-violet-500 dark:hover:text-white">
+        <DropdownMenuItem className=" flex cursor-pointer items-center justify-between px-3 py-2 text-sm text-indigo-400 hover:bg-violet-500 hover:text-white dark:text-indigo-400 dark:hover:text-white">
           <span>Invite People</span>
           <span>
             <UserPlus className="h-4 w-4" />
