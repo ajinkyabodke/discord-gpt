@@ -17,15 +17,37 @@ export default function Page() {
       file = e.target.files[0];
     }
 
-    const { data, error } = await supabase.storage
-      .from("discord-files")
-      .upload("public/" + file?.name, file as File);
+    // const { data, error } = await supabase.storage
+    //   .from("discord-files")
+    //   .upload("public/" + file?.name, file as File);
 
-    if (data) {
-      console.log(data);
-    } else if (error) {
-      console.log(error);
-    }
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("/api/file-upload", {
+      method: "POST",
+      body: formData,
+      headers: {
+        // "Content-Type": "multipart/form-data", //this doenst work ,web dev lmao
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("File uploaded successfully");
+        } else {
+          console.error("Upload failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    // if (data) {
+    //   console.log(data);
+    // } else if (error) {
+    //   console.log(error);
+    // }
   };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
