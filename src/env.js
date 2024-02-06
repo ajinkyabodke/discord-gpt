@@ -14,6 +14,8 @@ export const env = createEnv({
         (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
         "You forgot to change the default URL",
       ),
+
+    SUPABASE_SERVICE_ROLL_KEY: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -33,6 +35,7 @@ export const env = createEnv({
     NEXT_PUBLIC_LOCAL_TUNNEL_URL: z.string().url().optional(),
     NEXT_PUBLIC_SUPABASE_URL: z.string(),
     NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+    NEXT_PUBLIC_SUPABASE_WS_URL: z.string(),
     NEXT_PUBLIC_APP_URL: z
       .preprocess((str) => process.env.VERCEL_URL ?? str, z.string())
       .transform((val) => {
@@ -74,6 +77,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    SUPABASE_SERVICE_ROLL_KEY: process.env.SUPABASE_SERVICE_ROLL_KEY,
     NODE_ENV: process.env.NODE_ENV,
     QSTASH_URL: process.env.QSTASH_URL,
     QSTASH_TOKEN: process.env.QSTASH_TOKEN,
@@ -83,6 +87,7 @@ export const env = createEnv({
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_WS_URL: process.env.NEXT_PUBLIC_SUPABASE_WS_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     NEXT_PUBLIC_VERCEL_ENV: process.env.NEXT_PUBLIC_VERCEL_ENV,
     NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,

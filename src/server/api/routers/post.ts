@@ -9,6 +9,8 @@ import { messages } from "@/server/db/schema";
 import OpenAI from "openai";
 import { TRPCError } from "@trpc/server";
 import { scheduleMessageCheck, sendAssistantMessage } from "@/lib/upstash";
+import { createClient } from "@supabase/supabase-js";
+import { env } from "@/env";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -36,6 +38,30 @@ export const postRouter = createTRPCRouter({
       return {
         greeting: `Hello ${input.text}`,
       };
+    }),
+
+  getPresignedUrl: protectedProcedure
+    .input(
+      z.object({
+        content: z.string().min(2).max(250),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const supabase = createClient(
+        env.NEXT_PUBLIC_SUPABASE_URL,
+        env.SUPABASE_SERVICE_ROLL_KEY,
+      );
+
+      const { data, error } = await supabase.storage
+        .from("discord-files")
+        .createSignedUploadUrl(`files/${input.content}`);
+
+      console.log(error);
+
+      if (error) {
+        throw new TRPCError({ code: "INTERNAL_SERVER_ERROR" });
+      }
+      return data;
     }),
 
   sendMessage: protectedProcedure
