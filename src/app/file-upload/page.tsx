@@ -1,11 +1,8 @@
 "use client";
 import { createClient } from "@supabase/supabase-js";
 import { env } from "@/env";
-import { api } from "@/trpc/react";
 
 export default function Page() {
-  const { mutateAsync } = api.post.getPresignedUrl.useMutation();
-
   const handleUpload = async (e) => {
     let file;
 
@@ -20,15 +17,9 @@ export default function Page() {
       file = e.target.files[0];
     }
 
-    const dataa = await mutateAsync({ content: file?.name });
-
-    // const { data, error } = await supabase.storage
-    //   .from("discord-files")
-    //   .upload("public/" + file?.name, file as File);
-
     const { data, error } = await supabase.storage
       .from("discord-files")
-      .uploadToSignedUrl(dataa.path, dataa.token, file);
+      .upload("public/" + file?.name, file as File);
 
     if (data) {
       console.log(data);
